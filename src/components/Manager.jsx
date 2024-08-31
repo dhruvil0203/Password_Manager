@@ -1,14 +1,13 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { v4 as uuidv4 } from "uuid";
 
 const Manager = () => {
-  const ref = useRef();
-  const passwordRef = useRef();
   const [form, setForm] = useState({ site: "", username: "", password: "" });
   const [passwordArray, setPasswordArray] = useState([]);
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
 
   useEffect(() => {
     const storedPasswords = localStorage.getItem("passwords");
@@ -30,14 +29,8 @@ const Manager = () => {
     navigator.clipboard.writeText(text);
   };
 
-  const showPassword = () => {
-    if (passwordRef.current.type === "password") {
-      passwordRef.current.type = "text";
-      ref.current.src = "public/hide.png";
-    } else {
-      passwordRef.current.type = "password";
-      ref.current.src = "public/view.png";
-    }
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   const savePassword = () => {
@@ -142,24 +135,22 @@ const Manager = () => {
             />
             <div className="relative">
               <input
-                ref={passwordRef}
                 onChange={handleChange}
                 value={form.password}
                 className="rounded-full border border-green-500 p-4 py-1 w-full"
-                type="password"
+                type={showPassword ? "text" : "password"} // Toggle password visibility
                 name="password"
                 id="password"
                 placeholder="Enter Password"
               />
               <span
                 className="absolute right-[5px] top-[4px] cursor-pointer"
-                onClick={showPassword}
+                onClick={togglePasswordVisibility}
               >
                 <img
-                  ref={ref}
                   className="p-1"
                   width={25}
-                  src="/view.png"
+                  src={showPassword ? "/hide.png" : "/view.png"} // Dynamic image based on state
                   alt="Show/Hide Password"
                 />
               </span>
@@ -263,29 +254,39 @@ const Manager = () => {
                       </div>
                     </td>
                     <td className="py-2 text-center">
-                    <div className="flex items-center justify-center">
-                        <span
-                          className="cursor-pointer mx-1"
+                      <div className="flex items-center justify-center gap-2">
+                        <div
+                          className="lordiconedit size-7 cursor-pointer w-5"
                           onClick={() => editPassword(item.id)}
                         >
                           <lord-icon
-                            src="https://cdn.lordicon.com/wuvorxbv.json"
+                            src="https://cdn.lordicon.com/tyounuzx.json"
+                            style={{
+                              width: "25px",
+                              height: "25px",
+                              paddingTop: "2px",
+                              paddingLeft: "3px",
+                            }}
                             trigger="hover"
                             colors="primary:#000000,secondary:#000000"
-                            style={{ width: "25px", height: "25px" }}
                           ></lord-icon>
-                        </span>
-                        <span
-                          className="cursor-pointer mx-1"
+                        </div>
+                        <div
+                          className="lordicondelete size-7 cursor-pointer w-5"
                           onClick={() => deletePassword(item.id)}
                         >
                           <lord-icon
-                            src="https://cdn.lordicon.com/drxwpfop.json"
+                            src="https://cdn.lordicon.com/dovoajyj.json"
+                            style={{
+                              width: "25px",
+                              height: "25px",
+                              paddingTop: "2px",
+                              paddingLeft: "3px",
+                            }}
                             trigger="hover"
                             colors="primary:#000000,secondary:#000000"
-                            style={{ width: "25px", height: "25px" }}
                           ></lord-icon>
-                        </span>
+                        </div>
                       </div>
                     </td>
                   </tr>
