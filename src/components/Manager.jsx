@@ -1,5 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { v4 as uuidv4 } from "uuid";
@@ -7,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 const Manager = () => {
   const [form, setForm] = useState({ site: "", username: "", password: "" });
   const [passwordArray, setPasswordArray] = useState([]);
-  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     const storedPasswords = localStorage.getItem("passwords");
@@ -138,7 +137,7 @@ const Manager = () => {
                 onChange={handleChange}
                 value={form.password}
                 className="rounded-full border border-green-500 p-4 py-1 w-full"
-                type={showPassword ? "text" : "password"} // Toggle password visibility
+                type={showPassword ? "text" : "password"}
                 name="password"
                 id="password"
                 placeholder="Enter Password"
@@ -150,7 +149,7 @@ const Manager = () => {
                 <img
                   className="p-1"
                   width={25}
-                  src={showPassword ? "/hide.png" : "/view.png"} // Dynamic image based on state
+                  src={showPassword ? "/hide.png" : "/view.png"}
                   alt="Show/Hide Password"
                 />
               </span>
@@ -260,7 +259,7 @@ const Manager = () => {
                           onClick={() => editPassword(item.id)}
                         >
                           <lord-icon
-                            src="https://cdn.lordicon.com/tyounuzx.json"
+                            src="https://cdn.lordicon.com/wuvorxbv.json" 
                             style={{
                               width: "25px",
                               height: "25px",
