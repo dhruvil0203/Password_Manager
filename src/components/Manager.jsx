@@ -159,7 +159,7 @@ const Manager = () => {
                   ref={ref}
                   className="p-1"
                   width={25}
-                  src="public/view.png"
+                  src="/view.png"
                   alt="Show/Hide Password"
                 />
               </span>
