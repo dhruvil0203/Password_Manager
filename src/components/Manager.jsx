@@ -48,7 +48,7 @@ const Manager = () => {
         theme: "light",
       });
     } else {
-      toast.error("Error: Password not saved", {
+      toast.error("Error: Please enter details", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
